@@ -1,4 +1,4 @@
-### Active Directory Lookup Script by RDP
+### Active Directory Lookup Script by BKJ
 ###		Changelog
 ###		2020-10-19		Added password reset
 ###						Started research into account unlocks
@@ -40,14 +40,14 @@ $importedList = @(
 
 
 ###  Use the following command to get the full list of property fields:
-###  Get-ADUser -Identity rpiment1 -Properties *
+###  Get-ADUser -Identity LANID -Properties *
 
 
 ### Leave the rest alone.
 
 	Write-Host
 	Write-Host   **************************************************************
-	Write-Host   *  NTT DATA POWERSHELL SCRIPTS 
+	Write-Host   *  Active Directory POWERSHELL SCRIPTS 
 	Write-Host   **************************************************************
 	Write-Host   *  Look up users in Active Directory.                        *
 	Write-Host   **************************************************************
@@ -72,12 +72,6 @@ $ADUSER = Get-ADUser -Filter {EmailAddress -eq $ADEMAIL} -Properties SamAccountN
 		}
 
 	Write-Host
-### Check if locked
-
-### Unlock Account if locked
-### ERROR - NO RIGHTS
-### 	Unlock-ADAccount -Identity $ADLANID
-
 
 ### Check for account lock.
 &$CheckLocked
@@ -185,10 +179,5 @@ if ($LockedStatus -eq "True") {
 }
 }
 
-
+# start function
 &$ADPassEmail
-
-### FUTURE FEATURE. CHECK IF LOCKED AND UNLOCK AUTOMATICALLY
-### Unlock-ADAccount –Identity $AUSER
-
-
