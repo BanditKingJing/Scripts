@@ -52,15 +52,21 @@ $importedList = @(
 	Write-Host   *  Look up users in Active Directory.                        *
 	Write-Host   **************************************************************
 
-$ADPassEmail = {
+	$ADPassEmail = {
 	Write-Host
 	$ADEMAIL = Read-host "Enter the Email Address of the user you want look up"
+	
+# HELP!
+# Needs check for valid lookup.
+# Something like 
+# if (Get-ADUser -Filter {EmailAddress -eq $ADEMAIL} -Properties enabled) = TRUE 
+# continue. Else. Restart
 
 	Write-Host
 	Write-Host   Looking up $ADEMAIL ...
 	Write-Host
 
-$ADUSER = Get-ADUser -Filter {EmailAddress -eq $ADEMAIL} -Properties SamAccountName
+	$ADUSER = Get-ADUser -Filter {EmailAddress -eq $ADEMAIL} -Properties SamAccountName
 	Write-Host  Found $ADUSER
 			
 	ForEach ($i in $importedList)
